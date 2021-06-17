@@ -262,7 +262,7 @@ Defaults to false.
 ## Commitlint
 
 [Commitlint] needs external package [commitlint-config-gitmoji] and types from 
-**commitizen-emoji** to make everything work
+**commitizen-emoji** to make everything to work
 
 ```sh
 yarn add -D commitlint-config-gitmoji
