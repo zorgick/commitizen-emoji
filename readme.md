@@ -99,10 +99,10 @@ OR if [husky] hooks are set up
 
 ```sh
 # if commitlint is present in commit-msg hook
-yarn cz # 'a' will be neglected after commitlint checks commit message prepared by commitizen
+git commit -m 'a'  # 'a' will be neglected after commitlint checks commit message prepared by commitizen
 
-# if commitlint is not enabled in your project
-git commit
+# if commitlint is not enabled in commit-msg
+yarn cz
 ```
 
 ## Customization
