@@ -242,10 +242,6 @@ Place emoji before type to conform to conventional scheme of a commit header.
 
 Defaults to false.
 
-> 🚩 **Note**
->
-> Make sure [commitlint] (if present) is configured to accept this length change
-
 ```sh
 {
   "config": {
