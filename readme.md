@@ -61,7 +61,7 @@ consume information, but to easily understand it.
 
 ```sh
 # Resulting commit header (with conventional set to false)
-✨ (nonconventional): this works, but makes commitlint break
+✨ (nonconventional) this works, but makes commitlint break
 
 # Resulting commit header (with conventional set to true)
 ✨ feature(conventional): this works, and commitlint allows it
