@@ -107,7 +107,7 @@ yarn cz
 
 ## Customization
 
-Configuring `commitizen-emoji`:
+Configuring `commitizen-emoji` can be done in two ways:
 
 I. `package.json`
 ```json
