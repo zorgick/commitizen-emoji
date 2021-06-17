@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "\n[commit-msg hook] Starting...\n"
+
+yarn commitlint --edit $1
+
+echo "\n[commit-msg hook] Finished\n"

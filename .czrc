@@ -2,7 +2,7 @@
   "path": "./index.js",
   "config": {
     "commitizen-emoji": {
-      "scopes": ["readme", "linters"],
+      "scopes": ["readme", "linters", "hooks"],
       "conventional": true,
       "symbol": true
     }
