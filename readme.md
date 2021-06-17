@@ -130,7 +130,10 @@ II. `./.czrc`
 
 #### types
 
-By default `commitizen-emoji` comes preconfigured with the [Gitmoji](https://gitmoji.carloscuesta.me/) types.
+By default `commitizen-emoji` comes preconfigured with the [Gitmoji] types.
+
+
+But you always can declare your own set of types.
 
 ```sh
 {
@@ -311,7 +314,7 @@ module.exports = {
 
 Check out the origins of emoji commits - [gitmoji](https://gitmoji.dev/) fancy website.
 
-
+[gitmoji]: (https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json
 [commitizen]: https://github.com/commitizen/cz-cli
 [picture 1]: https://github.com/zorgick/commitizen-emoji/blob/master/assets/repo_preview.jpg?raw=true
 [husky]: https://github.com/typicode/husky
