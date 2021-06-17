@@ -1,0 +1,10 @@
+{
+  "path": "./index.js",
+  "config": {
+    "commitizen-emoji": {
+      "scopes": ["readme", "linters"],
+      "conventional": true,
+      "symbol": true
+    }
+  }
+}
