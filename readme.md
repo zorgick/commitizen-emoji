@@ -113,7 +113,7 @@ I. `package.json`
 ```json
 {
   "config": {
-    "commitizen-emoji": {}
+    "commitizenEmoji": {}
   }
 }
 ```
@@ -121,7 +121,7 @@ II. `./.czrc`
 ```sh
 {
   "config": {
-    "commitizen-emoji": {}
+    "commitizenEmoji": {}
   }
 }
 ```
@@ -138,7 +138,7 @@ But you always can declare your own set of types.
 ```sh
 {
   "config": {
-    "commitizen-emoji": {
+    "commitizenEmoji": {
       "types": [
         {
           "emoji": "🌟",
@@ -157,7 +157,7 @@ But you always can declare your own set of types.
 ```sh
 {
   "config": {
-    "commitizen-emoji": {
+    "commitizenEmoji": {
       "scopes": ["home", "accounts", "ci"]
     }
   }
@@ -174,7 +174,7 @@ Defaults to false.
 ```sh
 {
   "config": {
-    "commitizen-emoji": {
+    "commitizenEmoji": {
       "symbol": true
     }
   }
@@ -188,7 +188,7 @@ An array of questions you want to skip:
 ```sh
 {
   "config": {
-    "commitizen-emoji": {
+    "commitizenEmoji": {
       "skipQuestions": ["scope", "breakingBody"] # allowed values:
       # "body" - removes long description,
       # "scope" - removes scope, 
@@ -206,7 +206,7 @@ Questions overrides:
 ```sh
 {
   "config": {
-    "commitizen-emoji": {
+    "commitizenEmoji": {
       "questions": {
         "body": "This will be displayed instead of original text" # allowed keys:
         # "type" - type prompt message, 
@@ -231,7 +231,7 @@ The maximum length of your subject
 ```sh
 {
   "config": {
-    "commitizen-emoji": {
+    "commitizenEmoji": {
       "subjectMaxLength": 200
     }
   }
@@ -248,7 +248,7 @@ Defaults to false.
 ```sh
 {
   "config": {
-    "commitizen-emoji": {
+    "commitizenEmoji": {
       "conventional": true
     }
   }
@@ -303,7 +303,7 @@ module.exports = {
 ```sh
 {
   "config": {
-    "commitizen-emoji": {
+    "commitizenEmoji": {
       "conventional": true
     }
   }
