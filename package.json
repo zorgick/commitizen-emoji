@@ -1,6 +1,6 @@
 {
   "name": "commitizen-emoji",
-  "version": "1.3.2",
+  "version": "1.0.0",
   "description": "Procommitlint commitizen adapter for conventional commits with emojis.",
   "author": {
     "name": "Zackary Kononov",
