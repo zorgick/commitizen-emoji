@@ -1,0 +1,22 @@
+{
+  "compileOnSave": false, 
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "typeRoots": ["./node_modules/@types", "./libTypes"]
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
