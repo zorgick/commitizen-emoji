@@ -13,8 +13,7 @@
     "node": ">=10"
   },
   "files": [
-    "index.js",
-    "lib/*"
+    "dist/*"
   ],
   "keywords": [
     "commitizen",
@@ -29,15 +28,25 @@
     "homedir": "^0.6.0",
     "inquirer-autocomplete-prompt": "^0.12.0",
     "inquirer-maxlength-input-prompt": "^1.0.1",
+    "node-fetch": "^2.6.1",
+    "node-libcurl": "^2.3.3",
     "pad": "^2.3.0",
     "read-pkg-up": "^7.0.1",
     "wrap-ansi": "^3.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.2",
+    "@types/node-fetch": "^2.5.10",
+    "@types/wrap-ansi": "^8.0.0",
     "commitizen": "^4.2.4",
     "commitlint-config-gitmoji": "^2.2.5",
-    "husky": "^6.0.0"
+    "husky": "^6.0.0",
+    "jest": "^27.0.4",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.3"
   },
   "scripts": {
     "prepare": "husky install"
