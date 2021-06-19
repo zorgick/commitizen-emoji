@@ -13,7 +13,12 @@
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "typeRoots": ["./node_modules/@types", "./libTypes"]
+    "typeRoots": ["./node_modules/@types", "./libTypes"],
+    "paths": {
+      "utils": ["./src/utils"],
+      "types": ["./src/types"],
+      "consts": ["./src/constants"]
+    }
   },
   "exclude": [
     "node_modules",
