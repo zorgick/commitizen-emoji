@@ -1,6 +1,6 @@
 import {
   typeNames
-} from '../constants';
+} from 'consts';
 
 export type StringObjectType = Record<string, string>
 export type CodeNamesType = typeof typeNames[number][0]
