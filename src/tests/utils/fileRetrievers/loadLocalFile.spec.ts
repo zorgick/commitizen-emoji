@@ -1,6 +1,8 @@
 import path from 'path';
 import utils from 'utils';
 
+import testFile from '../../fixtures/testFile.json';
+
 test('returns null if a file path is not provided', async () => {
   const loadLocalFileSpy = jest.spyOn(utils, 'loadLocalFile');
   const result = await utils.loadLocalFile();
@@ -30,9 +32,7 @@ test('reads and returns object from a json file', async () => {
   const pathToFile = path.join(__dirname, '..', '..', 'fixtures', 'testFile.json');
   const loadLocalFileSpy = jest.spyOn(utils, 'loadLocalFile');
   const result = await utils.loadLocalFile(pathToFile);
-  expect(result).toEqual({
-    example: "I'm a json test file"
-  })
+  expect(result).toEqual(testFile)
 
   loadLocalFileSpy.mockRestore();
 });
