@@ -1,10 +1,18 @@
 {
-  "path": "./index.js",
-  "config": {
-    "commitizen-emoji": {
-      "scopes": ["readme", "linters", "hooks", "lib", "tdd"],
-      "conventional": true,
-      "symbol": true
+  "path": "./node_modules/cz-emoji",
+    "config": {
+      "cz-emoji": {
+        "scopes": [
+          "readme",
+          "linters",
+          "hooks",
+          "lib",
+          "tdd",
+          "fixtures",
+          "interceptors"
+        ],
+        "conventional": true,
+        "symbol": true
+      }
     }
-  }
 }
