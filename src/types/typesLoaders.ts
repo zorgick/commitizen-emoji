@@ -1,5 +1,6 @@
 import {
   StringObjectType,
+  GitmojiObjectType,
 } from './index'
 
 // DTOs
@@ -21,7 +22,7 @@ export type ConfigType = {
    * ```
    * List of custom user types defined in the manner of gitmoji types.
    */
-  types: StringObjectType[];
+  types: GitmojiObjectType[];
   /**
    * @example
    * ```json
@@ -166,12 +167,12 @@ export type CommitizenConfigType = {
 };
 
 export type ResponseGitmojiType = {
-  gitmojis: StringObjectType[];
+  gitmojis: GitmojiObjectType[];
 };
 
 // Functions
 
 export type LoadLocalFileType = <T>(filePath?: string) => Promise<T>;
 export type LoadConfigType = (filePath?: string) => Promise<ConfigType | null>;
-export type LoadGitmojiType = () => Promise<StringObjectType[]>;
+export type LoadGitmojiType = () => Promise<GitmojiObjectType[]>;
 export type GetConfigType = () => Promise<ConfigType>;
