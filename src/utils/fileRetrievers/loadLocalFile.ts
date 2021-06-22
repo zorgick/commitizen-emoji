@@ -14,7 +14,7 @@ const readFile = util.promisify(fs.readFile);
  * @return {Object} gitmoji-types object
  */
 export const loadLocalFile: LoadLocalFileType = async (filePath) => {
-  if (!filePath) {
+  if (!filePath || !fs.existsSync(filePath)) {
     return null;
   }
 
