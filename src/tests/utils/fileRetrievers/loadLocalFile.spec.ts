@@ -12,9 +12,18 @@ test('returns null if a file path is not provided', async () => {
   loadLocalFileSpy.mockRestore();
 });
 
-test('throws an error if a file doesn\'t exist on a dedicated path', () => {
+test('returns null if a file doesn\'t exist on a dedicated path', async () => {
   const loadLocalFileSpy = jest.spyOn(utils, 'loadLocalFile');
-  expect(utils.loadLocalFile('/path/does/not/exist')).rejects.toThrowError()
+  const result = await utils.loadLocalFile('/path/does/not/exist');
+  expect(result).toEqual(null);
+
+  loadLocalFileSpy.mockRestore();
+});
+
+test('returns null if path is not provided', async () => {
+  const loadLocalFileSpy = jest.spyOn(utils, 'loadLocalFile');
+  const result = await utils.loadLocalFile();
+  expect(result).toEqual(null);
 
   loadLocalFileSpy.mockRestore();
 });
