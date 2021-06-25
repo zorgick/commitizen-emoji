@@ -1,4 +1,6 @@
-export const DEFAULT_CONFIG = {
+import { ConfigType } from 'types';
+
+export const DEFAULT_CONFIG: ConfigType = {
   types: [],
   replaceTypes: false,
   scopes: [],

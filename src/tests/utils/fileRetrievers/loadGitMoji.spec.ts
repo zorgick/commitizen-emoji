@@ -19,7 +19,6 @@ test('loads via network (mock) missing gitmojis file', async () => {
 
   expect(fs.existsSync(pathToGimojis)).toEqual(true);
   expect(result).toEqual(expect.objectContaining(testFile.gitmojis))
-  loadGitmojiSpy.mockRestore();
 });
 
 test('loads file from local fs', async () => {
