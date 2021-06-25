@@ -1,9 +1,9 @@
 import {
-  typeNames
+  TYPE_NAMES
 } from 'consts';
 
 export type StringObjectType = Record<string, string>
-export type CodeNamesType = typeof typeNames[number][0]
+export type CodeNamesType = typeof TYPE_NAMES[number][0]
 
 export interface MapInstance<K, V> {
   clear(): void;

@@ -173,6 +173,6 @@ export type ResponseGitmojiType = {
 // Functions
 
 export type LoadLocalFileType = <T>(filePath?: string) => Promise<T>;
-export type LoadConfigType = (filePath?: string) => Promise<ConfigType | null>;
+export type LoadConfigType = (filePath?: string) => Promise<Partial<ConfigType> | null>;
 export type LoadGitmojiType = () => Promise<GitmojiObjectType[]>;
 export type GetConfigType = () => Promise<ConfigType>;
