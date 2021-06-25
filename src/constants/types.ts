@@ -1,4 +1,4 @@
-export const typeNames = [
+export const TYPE_NAMES = [
   [':art:', 'codestyle'],
   [':zap:', 'perf'],
   [':fire:', 'prune'],
