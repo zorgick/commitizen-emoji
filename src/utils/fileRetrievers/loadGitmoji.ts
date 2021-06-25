@@ -10,6 +10,10 @@ import {
 } from 'types'
 
 import {
+  ERROR_GITMOJI_FETCH,
+} from 'consts'
+
+import {
   loadLocalFile,
 } from './index'
 
@@ -36,9 +40,7 @@ export const loadGitmoji: LoadGitmojiType = async () => {
       await writeFile(filePath, JSON.stringify(gitmojiTypes, undefined, 2));
     } catch (e) {
       /* istanbul ignore next */
-      throw Error(
-        'Failed to fetch gitmoji JSON, please refer to https://github.com/zorgick/commitizen-emoji/issues for help.',
-      );
+      throw Error(ERROR_GITMOJI_FETCH);
     }
   }
   return gitmojiTypes;
