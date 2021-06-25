@@ -9,8 +9,6 @@ const unlink = util.promisify(fs.unlink);
 const pathToGimojis = path.join(__dirname, '..', '..', '..', 'data', 'gitmojis.json')
 
 test('loads via network (mock) missing gitmojis file', async () => {
-  const loadGitmojiSpy = jest.spyOn(utils, 'loadGitmoji');
-
   // remove file, if it exists
   if (fs.existsSync(pathToGimojis)) {
     await unlink(pathToGimojis);
@@ -25,11 +23,8 @@ test('loads via network (mock) missing gitmojis file', async () => {
 });
 
 test('loads file from local fs', async () => {
-  const loadGitmojiSpy = jest.spyOn(utils, 'loadGitmoji');
-
   expect(fs.existsSync(pathToGimojis)).toEqual(true);
   const result = await utils.loadGitmoji();
 
   expect(result).toEqual(expect.objectContaining(testFile.gitmojis))
-  loadGitmojiSpy.mockRestore();
 });
