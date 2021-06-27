@@ -79,3 +79,34 @@ test('returns user redefined type names', () => {
   expect(artName).toEqual(userTypeNames[':art:']);
   expect(coffinName).toEqual(userTypeNames[':coffin:']);
 })
+
+test('returns only selected set of gitmojis with user defined type names\
+and author\'s type names for unmapped emoji codes', () => {
+  const userTypeNames = {
+    ':art:': 'voila',
+    ':coffin:': 'dead',
+  }
+  const selectedTypeNames = [':art:', ':bug:']
+  const result = utils.mapTypeNames(
+    testFile.gitmojis as GitmojiObjectType[],
+    {
+      userTypeNames,
+      selectedTypeNames,
+    }
+  )
+  expect(result).not.toBeNull();
+  expect(result).toHaveLength(2);
+  const artEmoji = result.find(({ code }) => code === ':art:');
+  const bugEmoji = result.find(({ code }) => code === ':bug:');
+  expect(artEmoji).toBeTruthy();
+  expect(bugEmoji).toBeTruthy();
+
+  const artName = artEmoji!.name;
+  const bugName = bugEmoji!.name;
+  const [_, bugEmojiName] = TYPE_NAMES.find(([code]) => code === ':bug:')!;
+  expect(artName)
+    .not
+    .toEqual(testFile.gitmojis.find(({ code }) => code === ':art:')!.name);
+  expect(artName).toEqual(userTypeNames[':art:']);
+  expect(bugName).toEqual(bugEmojiName);
+})
