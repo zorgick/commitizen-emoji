@@ -9,5 +9,5 @@ import {
 
 export type MapTypeNamesType = (
   gitmojiTypes: GitmojiObjectType[],
-  userTypeNames?: StringObjectType | null,
+  userTypeNames?: StringObjectType | null
 ) => GitmojiObjectType[];

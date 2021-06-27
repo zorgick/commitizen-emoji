@@ -4,12 +4,19 @@ import {
 import {
   MapTypeNamesType,
   CodeNamesType,
+  GitmojiObjectType
 } from 'types'
 
 import {
   validateUserTypeName,
 } from '../index'
 
+/**
+ * The purpose of this function is to map default
+ * gitmoji type names with user defined ones if provided
+ * or with author's default type names.
+ @return {Array.<GitmojiObjectType>} list of gitmojis with changed type names
+ */
 export const mapTypeNames: MapTypeNamesType = (gitmojiTypes, userTypeNames) => {
   const defaultPreferedTypeNames = new Map(TYPE_NAMES);
   type DefaultsMapType = typeof defaultPreferedTypeNames;

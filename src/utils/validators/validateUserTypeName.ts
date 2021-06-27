@@ -1,7 +1,6 @@
 import {
   ValidateUserTypeNameType,
-} from '../../types'
-
+} from 'types'
 import {
   ERROR_TYPE_NAME_FORMAT,
   ERROR_MISSING_EMOJI_CODE,

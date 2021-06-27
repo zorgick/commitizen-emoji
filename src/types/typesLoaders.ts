@@ -27,7 +27,15 @@ export type ConfigType = {
    * @example
    * ```json
    * "commitizenEmoji": {
-   *    "replaceTypes": true
+   *   "types": [
+   *      {
+   *        "emoji": "😱",
+   *        "code": ":wtf:",
+   *        "description": "I don't understand a bit in all this code.",
+   *        "name": "wtf"
+   *      }
+   *   ]
+   *   "replaceTypes": true
    * }
    * ```
    * Should custom user types replace default gitmoji types.
@@ -40,7 +48,7 @@ export type ConfigType = {
    * @example
    * ```json
    * "commitizenEmoji": {
-   *    "scopes": ["readme", "cypress", "linters"]
+   *   "scopes": ["readme", "cypress", "linters"]
    * }
    * ```
    * List of custom user scopes.
@@ -53,7 +61,7 @@ export type ConfigType = {
    * @example
    * ```json
    * "commitizenEmoji": {
-   *    "symbol": true
+   *   "symbol": true
    * }
    * ```
    * Should emoji be depicted as a grapheme or as a code.
@@ -66,7 +74,7 @@ export type ConfigType = {
    * @example
    * ```json
    * "commitizenEmoji": {
-   *    "skipQuestions": ["body", "breakingBody"]
+   *   "skipQuestions": ["body", "breakingBody"]
    * }
    * ```
    * List of question that must be skipped by the prompt.
@@ -77,8 +85,8 @@ export type ConfigType = {
    * @example
    * ```json
    * "commitizenEmoji": {
-   *    "questionsPrompts": {
-   *      "type": "What emoji type is the fanciest of them all?: "
+   *   "questions": {
+   *     "type": "What emoji type is the fanciest of them all?: "
    *    }
    * }
    * ```
@@ -90,7 +98,7 @@ export type ConfigType = {
    * @example
    * ```json
    * "commitizenEmoji": {
-   *    "subjectMaxLength": 100
+   *   "subjectMaxLength": 100
    * }
    * ```
    * Maximum length of the subject.
@@ -101,7 +109,7 @@ export type ConfigType = {
    * @example
    * ```json
    * "commitizenEmoji": {
-   *    "conventionalFormat": true
+   *   "conventionalFormat": true
    * }
    * ```
    * Should the emoji insert its name (a.k.a. type) after itself, in order to 
@@ -113,12 +121,12 @@ export type ConfigType = {
    * @example
    * ```json
    * "commitizenEmoji": {
-   *    "selectedTypesByCode": [":art:", ":memo:", ":sparkles:", ":bug:"]
+   *   "selectedTypesByCode": [":art:", ":memo:", ":sparkles:", ":bug:"]
    * }
    * ```
    * List of **gitmoji** types that user wants to work with. Types are picked
    * by emoji codes.
-   * If replaceTypes option is set to true, this list is neglected.
+   * If types are provided and replaceTypes option is set to true, this list is neglected.
    * If usePack option is provided, this list is neglected.
    * The code string format must strictly conform to gitmoji code format.
    * Default to empty array - all **gitmoji** types are used.
@@ -128,19 +136,16 @@ export type ConfigType = {
    * @example
    * ```json
    * "commitizenEmoji": {
-   *    "typeNamesByCode": {
+   *   "typeNamesByCode": {
    *      ":fire:": "cowabunga",
    *      ":poop:": "it-is-treason-then"
    *    },
-   *    "conventionalFormat": true
    * }
    * ```
    * Map of code-name pairs.
    * Allows to redefine emoji names by selecting them by code and giving them 
    * new names.
-   * If conventionalFormat option is set to false or not provided, this map
-   * is neglected.
-   * If replaceTypes is set to true, this map is neglected.
+   * If types are provided and replaceTypes is set to true, this map is neglected.
    * Default map will be present somewhere in readme.
    */
   typeNamesByCode: StringObjectType;
@@ -148,12 +153,12 @@ export type ConfigType = {
    * @example
    * ```json
    * "commitizenEmoji": {
-   *    "usePack": "conventional"
+   *   "usePack": "conventional"
    * }
    * ```
    * Allows to use one of the most popular sets of types.
    * Each set comes with appropriate names and emojis, the latter is opinionated.
-   * If replaceTypes is set to true, this option is neglected.
+   * If types are provided, this option is neglected.
    * Defaults to empty string - standard gitmoji types are used.
    */
   usePack: 'conventional' | '';
