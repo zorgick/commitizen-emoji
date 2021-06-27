@@ -143,8 +143,8 @@ export type ConfigType = {
    * }
    * ```
    * Map of code-name pairs.
-   * Allows to redefine emoji names by selecting them by code and giving them 
-   * new names.
+   * Allows to redefine emoji names by selecting them by a gitmoji code
+   * and giving them new names.
    * If types are provided and replaceTypes is set to true, this map is neglected.
    * Default map will be present somewhere in readme.
    */
