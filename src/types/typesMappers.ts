@@ -7,7 +7,13 @@ import {
 
 // Functions
 
+export type MapSelectedCodesType = (
+  selectedTypeNames?: any[],
+) => string[][];
 export type MapTypeNamesType = (
   gitmojiTypes: GitmojiObjectType[],
-  userTypeNames?: StringObjectType | null
+  userChoice?: {
+    selectedTypeNames?: string[],
+    userTypeNames?: StringObjectType | null
+  }
 ) => GitmojiObjectType[];

@@ -126,9 +126,9 @@ export type ConfigType = {
    * ```
    * List of **gitmoji** types that user wants to work with. Types are picked
    * by emoji codes.
-   * If types are provided and replaceTypes option is set to true, this list is neglected.
-   * If usePack option is provided, this list is neglected.
-   * The code string format must strictly conform to gitmoji code format.
+   * If replaceTypes option is set to true, this list is neglected.
+   * If usePack option is provided and types option is not, this list is neglected.
+   * All nonexistant code name will be ignored
    * Default to empty array - all **gitmoji** types are used.
    */
   selectedTypesByCode: string[];

@@ -64,4 +64,4 @@ export const TYPE_NAMES = [
   [':monocle_face:', 'explore'],
   [':coffin:', 'clean'],
   [':test_tube:', 'fall'],
-] as const
+];
