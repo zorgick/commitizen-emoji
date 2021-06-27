@@ -4,21 +4,32 @@ import {
 import {
   MapTypeNamesType,
   CodeNamesType,
-  GitmojiObjectType
+  GitmojiObjectType,
+  MapSelectedCodesType,
 } from 'types'
 
 import {
   validateUserTypeName,
 } from '../index'
 
-/**
- * The purpose of this function is to map default
- * gitmoji type names with user defined ones if provided
- * or with author's default type names.
- @return {Array.<GitmojiObjectType>} list of gitmojis with changed type names
- */
-export const mapTypeNames: MapTypeNamesType = (gitmojiTypes, userTypeNames) => {
-  const defaultPreferedTypeNames = new Map(TYPE_NAMES);
+export const mapSelectedCodes: MapSelectedCodesType = (selectedTypeNames) => {
+  let typePairs = TYPE_NAMES;
+  if (selectedTypeNames && Array.isArray(selectedTypeNames)) {
+    typePairs = TYPE_NAMES.filter(([code]) => selectedTypeNames.includes(code));
+  }
+  return typePairs;
+}
+
+export const mapTypeNames: MapTypeNamesType = (
+  gitmojiTypes,
+  {
+    selectedTypeNames,
+    userTypeNames,
+  } = {}
+) => {
+  const typePairs = mapSelectedCodes(selectedTypeNames);
+  // @ts-ignore
+  const defaultPreferedTypeNames = new Map<string, string>(typePairs);
   type DefaultsMapType = typeof defaultPreferedTypeNames;
 
   // if user type names are given we need to replace
@@ -36,8 +47,10 @@ export const mapTypeNames: MapTypeNamesType = (gitmojiTypes, userTypeNames) => {
     });
   }
 
-  return gitmojiTypes.map(gitMojiObject => ({
-    ...gitMojiObject,
-    name: defaultPreferedTypeNames.get(gitMojiObject.code) as string,
-  }));
+  return gitmojiTypes
+    .filter(({ code }) => defaultPreferedTypeNames.has(code))
+    .map((gitMojiObject) => ({
+      ...gitMojiObject,
+      name: defaultPreferedTypeNames.get(gitMojiObject.code) as string,
+    }));
 };
