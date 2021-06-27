@@ -5,6 +5,7 @@ import {
   ERROR_MISSING_EMOJI_CODE,
 } from 'consts';
 
+// @ts-ignore
 const defaultTypeNames = new Map(TYPE_NAMES);
 
 test('throws on wrong types of a type name', () => {

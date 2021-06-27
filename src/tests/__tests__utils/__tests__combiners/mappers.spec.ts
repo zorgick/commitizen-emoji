@@ -11,7 +11,7 @@ import {
 import testFile from '../../fixtures/testFile.json'
 
 test('returns default type names if user type names are not given', () => {
-  const result = utils.mapTypeNames(testFile.gitmojis as GitmojiObjectType[], null)
+  const result = utils.mapTypeNames(testFile.gitmojis as GitmojiObjectType[])
   expect(result).not.toBeNull();
   const newNames = result.map(({ name }) => name);
   const preferedNames = TYPE_NAMES.map(([_, name]) => name);
@@ -22,19 +22,37 @@ test('returns default type names if user type names are not given', () => {
 test('throws if one of user type names is not a string', () => {
   expect(() => utils.mapTypeNames(
     testFile.gitmojis as GitmojiObjectType[],
-    { ':art:': true } as any
+    {
+      userTypeNames: { ':art:': true } as any
+    }
   )).toThrowError(ERROR_TYPE_NAME_FORMAT(true))
 })
 
 test('throws if one of user emoji codes is not valid', () => {
   expect(() => utils.mapTypeNames(
     testFile.gitmojis as GitmojiObjectType[],
-    { 'art:': 'name' } as any
+    {
+      userTypeNames: { 'art:': 'name' } as any
+    }
   )).toThrowError(ERROR_MISSING_EMOJI_CODE('art:'))
   expect(() => utils.mapTypeNames(
     testFile.gitmojis as GitmojiObjectType[],
-    { ':sth:': 'name' } as any
+    {
+      userTypeNames: { ':sth:': 'name' } as any
+    }
   )).toThrowError(ERROR_MISSING_EMOJI_CODE(':sth:'))
+})
+
+test('returns a given set of selected emojis', () => {
+  const selectedTypeNames = [':art:', ':bug:']
+  const result = utils.mapTypeNames(
+    testFile.gitmojis as GitmojiObjectType[],
+    { selectedTypeNames }
+  )
+  expect(result).not.toBeNull();
+  expect(result).toHaveLength(2);
+  expect(result.find(({ code }) => code === ':art:')).toBeTruthy();
+  expect(result.find(({ code }) => code === ':bug:')).toBeTruthy();
 })
 
 test('returns user redefined type names', () => {
@@ -44,7 +62,7 @@ test('returns user redefined type names', () => {
   }
   const result = utils.mapTypeNames(
     testFile.gitmojis as GitmojiObjectType[],
-    userTypeNames
+    { userTypeNames }
   )
   expect(result).not.toBeNull();
   const newNames = result.filter(({ code, }) =>
