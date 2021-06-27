@@ -1,7 +1,7 @@
 {
-  "path": "./node_modules/cz-emoji",
+  "path": "./dist/index.js",
     "config": {
-      "cz-emoji": {
+      "commitizenEmoji": {
         "scopes": [
           "readme",
           "linters",
