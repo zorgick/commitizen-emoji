@@ -3,6 +3,6 @@
 
 echo "\n[prepare-commit-msg hook] Starting...\n"
 
-exec < /dev/tty && yarn cz --hook || true
+exec < /dev/tty && npx cz --hook || true
 
 echo "\n[prepare-commit-msg hook] Finished\n"
