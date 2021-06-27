@@ -3,6 +3,7 @@ import {
 } from 'consts';
 
 export type StringObjectType = Record<string, string>
+export type CommonObjectType = Record<string, any>
 export type CodeNamesType = typeof TYPE_NAMES[number][0]
 
 export interface MapInstance<K, V> {
