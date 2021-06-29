@@ -30,7 +30,8 @@
     "node-fetch": "^2.6.1",
     "pad": "^2.3.0",
     "read-pkg-up": "^7.0.1",
-    "wrap-ansi": "^3.0.0"
+    "wrap-ansi": "^3.0.0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
