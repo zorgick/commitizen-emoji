@@ -15,6 +15,7 @@ export const DEFAULT_CONFIG: ConfigType = {
     issues: 'Resolved or linked issues (#1 #2 ...):',
   },
   subjectMaxLength: 75,
+  issuesPrefix: '',
   conventionalFormat: false,
   selectedTypesByCode: [],
   typeNamesByCode: {},
