@@ -13,3 +13,7 @@ export type GitmojiObjectType = CommonObjectType & {
 
 // Functions
 
+export type MergeTypeListsType = (
+  gitmojiTypes: GitmojiObjectType[],
+  userTypes: GitmojiObjectType[],
+) => GitmojiObjectType[];

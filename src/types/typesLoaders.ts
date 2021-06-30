@@ -109,6 +109,19 @@ export type ConfigType = {
    * @example
    * ```json
    * "commitizenEmoji": {
+   *   "issuesPrefix": 'https://harbarfor.atlassian.net/browse/'
+   * }
+   * ```
+   * Inserts prefix to all listed issues, .e.g. Issues: #2, #3 become
+   * Issues: https://harbarfor.atlassian.net/browse/2, https://harbarfor.atlassian.net/browse/3.
+   * Defaults to empty string.
+   * A terminating slash can be omitted.
+   */
+  issuesPrefix: string;
+  /**
+   * @example
+   * ```json
+   * "commitizenEmoji": {
    *   "conventionalFormat": true
    * }
    * ```
