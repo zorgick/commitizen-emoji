@@ -17,3 +17,7 @@ export type MergeTypeListsType = (
   gitmojiTypes: GitmojiObjectType[],
   userTypes: GitmojiObjectType[],
 ) => GitmojiObjectType[];
+export type JoinTypesType = (
+  gitmojiTypes: GitmojiObjectType[],
+  userConfig?: Partial<ConfigType>
+) => Promise<GitmojiObjectType[]>;
