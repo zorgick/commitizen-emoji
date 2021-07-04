@@ -1,19 +1,27 @@
 import findUp from 'find-up';
 import os from 'os';
 import path from 'path';
+
 import {
   ConfigType,
   CommitizenConfigType,
   LoadConfigType,
+  GetConfigType,
 } from 'types'
+
+import {
+  DEFAULT_CONFIG,
+} from 'consts';
+
+import {
+  uniteConfigs,
+} from '../index'
+
 import {
   loadLocalFile,
+  loadGitmoji,
 } from './index'
 
-/** 
- * This function loads commitizen config file from a specified path
- * @return {Object} user's commitizenEmoji config object
- */
 export const loadConfig: LoadConfigType = async (filePath) => {
   const configFile = await loadLocalFile<CommitizenConfigType | null>(filePath);
   let configObject = configFile;
@@ -28,11 +36,7 @@ export const loadConfig: LoadConfigType = async (filePath) => {
   return null;
 };
 
-/** 
- * This function loads commitizen config file from a
- * user's project rootDir directory
- * @return {Object} user's commitizenEmoji config object
- */
+// reads user config from user's root directory (with package.json)
 export const loadConfigFromUserRoot: LoadConfigType = async (filePath) => {
   if (!filePath) {
     return null;
@@ -41,3 +45,16 @@ export const loadConfigFromUserRoot: LoadConfigType = async (filePath) => {
   const resolvedPath = await findUp(filePath);
   return loadConfig(resolvedPath);
 };
+
+export const getConfig: GetConfigType = async () => {
+  const gitmojiTypes = await loadGitmoji();
+
+  const defaultConfig: ConfigType = DEFAULT_CONFIG;
+
+  const userConfig =
+    (await loadConfigFromUserRoot('.czrc')) ||
+    (await loadConfigFromUserRoot('package.json')) ||
+    (await loadConfig(path.join(os.homedir(), '.czrc')));
+
+  return await uniteConfigs(defaultConfig, userConfig, gitmojiTypes);
+}
