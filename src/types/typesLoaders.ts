@@ -41,7 +41,7 @@ export type ConfigType = {
    * Should custom user types replace default gitmoji types.
    * Defaults to false - types will be merged, and user types
    * will take precedence over default types.
-   * This option will have no effect if types array is not defined.
+   * This option will have no effect if types array is not defined or empty
    */
   replaceTypes: boolean;
   /**
@@ -80,7 +80,7 @@ export type ConfigType = {
    * List of question that must be skipped by the prompt.
    * Defaults to empty array.
    */
-  skipQuestions: 'scope' | 'body' | 'breakingBody' | 'issues'[];
+  skipQuestions: ('scope' | 'body' | 'breakingBody' | 'issues')[];
   /**
    * @example
    * ```json
@@ -93,7 +93,7 @@ export type ConfigType = {
    * User defined question for each prompt.
    * Defaults to empty object.
    */
-  questions: Record<'type' | 'scope' | 'subject' | 'body' | 'breakingBody' | 'issues', string>;
+  questions: Partial<Record<'type' | 'scope' | 'subject' | 'body' | 'breakingBody' | 'issues', string>>;
   /**
    * @example
    * ```json
