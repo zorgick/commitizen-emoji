@@ -3,10 +3,10 @@ import fs from 'fs';
 import util from 'util';
 import utils from 'utils';
 
-import testFile from '../../fixtures/testFile.json';
+import testFile from '../fixtures/testFile.json';
 
 const unlink = util.promisify(fs.unlink);
-const pathToGimojis = path.join(__dirname, '..', '..', '..', 'data', 'gitmojis.json')
+const pathToGimojis = path.join(__dirname, '..', '..', 'data', 'gitmojis.json')
 
 test('loads via network (mock) missing gitmojis file', async () => {
   // remove file, if it exists

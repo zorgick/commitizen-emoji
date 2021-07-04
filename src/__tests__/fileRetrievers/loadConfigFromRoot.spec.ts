@@ -1,7 +1,7 @@
 import fs from 'fs';
 import utils from 'utils';
 
-import testCzrc from '../../fixtures/testCzrc.json';
+import testCzrc from '../fixtures/testCzrc.json';
 
 test('returns null if file is nonexistant', async () => {
   const pathToNowhere = 'none';

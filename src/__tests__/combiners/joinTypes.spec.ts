@@ -3,7 +3,7 @@ import {
   TYPE_NAMES,
   CONVENTIONAL_NAMES,
 } from 'consts'
-import { gitmojis } from '../../fixtures/testFile.json'
+import { gitmojis } from '../fixtures/testFile.json'
 
 test('returns author\'s gitmojis names, if the user config is not provided', async () => {
   const result = await utils.joinTypes(gitmojis);

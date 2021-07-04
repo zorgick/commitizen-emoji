@@ -2,12 +2,11 @@ import path from 'path';
 import fs from 'fs';
 import utils from 'utils';
 
-import testCzrc from '../../fixtures/testCzrc.json';
+import testCzrc from '../fixtures/testCzrc.json';
 
 test('loads json file and returns commitizenEmoji config', async () => {
   const pathToCzrc = path.join(
     __dirname,
-    '..',
     '..',
     'fixtures',
     'testCzrc.json',
@@ -23,7 +22,6 @@ test('loads json file and returns commitizenEmoji config', async () => {
 test('loads .czrc file (string) and returns commitizenEmoji config', async () => {
   const pathToRawCzrc = path.join(
     __dirname,
-    '..',
     '..',
     'fixtures',
     '.testRawCzrc',

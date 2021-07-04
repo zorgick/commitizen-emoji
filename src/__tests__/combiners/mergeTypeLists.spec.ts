@@ -1,5 +1,5 @@
 import utils from 'utils';
-import { gitmojis } from '../../fixtures/testFile.json'
+import { gitmojis } from '../fixtures/testFile.json'
 
 test('returns default gitmoji types appended with user emoji types', () => {
   const userTypes = [

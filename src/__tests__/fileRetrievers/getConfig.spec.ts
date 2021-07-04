@@ -4,8 +4,8 @@ import {
   TYPE_NAMES,
 } from 'consts';
 
-import * as utils from '../../../utils/fileRetrievers/loadConfig';
-import { gitmojis } from '../../fixtures/testFile.json';
+import * as utils from '../../utils/fileRetrievers/loadConfig';
+import { gitmojis } from '../fixtures/testFile.json';
 
 const setup = (adjustedConfig?: Partial<ConfigType>) => {
   // @ts-ignore

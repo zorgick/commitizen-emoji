@@ -6,7 +6,7 @@ import {
 } from 'consts';
 import utils from 'utils';
 
-import { gitmojis } from '../../fixtures/testFile.json';
+import { gitmojis } from '../fixtures/testFile.json';
 
 const setup = (adjustedConfig?: Partial<ConfigType>) => {
   // @ts-ignore

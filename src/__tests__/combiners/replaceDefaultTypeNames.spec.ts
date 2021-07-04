@@ -8,7 +8,7 @@ import {
   ERROR_MISSING_EMOJI_CODE,
 } from 'consts'
 
-import testFile from '../../fixtures/testFile.json'
+import testFile from '../fixtures/testFile.json'
 
 test('returns default type names if user type names are not given', () => {
   const result = utils.replaceDefaultTypeNames(TYPE_NAMES)
