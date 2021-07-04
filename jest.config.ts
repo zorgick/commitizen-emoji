@@ -12,7 +12,13 @@ const config: Config.InitialOptions = {
       prefix: '<rootDir>/',
     }),
   },
-  setupFilesAfterEnv: ['./src/tests/mocks/setupEnv.ts']
+  setupFilesAfterEnv: ['./src/__tests__/mocks/setupEnv.ts'],
+  modulePathIgnorePatterns: [
+    '<rootDir>/dist/',
+  ],
+  testPathIgnorePatterns: [
+    '<rootDir>/src/__tests__/mocks/'
+  ]
 };
 
 export default config;
