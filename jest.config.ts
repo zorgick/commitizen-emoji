@@ -18,6 +18,9 @@ const config: Config.InitialOptions = {
   ],
   testPathIgnorePatterns: [
     '<rootDir>/src/__tests__/mocks/'
+  ],
+  collectCoverageFrom: [
+    '<rootDir>/src/lib/**/*.{js,ts}'
   ]
 };
 

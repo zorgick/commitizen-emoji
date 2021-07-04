@@ -15,7 +15,7 @@
     "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types", "./libTypes"],
     "paths": {
-      "utils": ["./src/utils"],
+      "lib": ["./src/lib"],
       "types": ["./src/types"],
       "consts": ["./src/constants"]
     }
