@@ -4,7 +4,7 @@ import {
   CONVENTIONAL_NAMES,
   TYPE_NAMES,
 } from 'consts';
-import utils from 'utils';
+import lib from 'lib';
 
 import { gitmojis } from '../fixtures/testFile.json';
 
@@ -49,13 +49,13 @@ const setup = (adjustedConfig?: Partial<ConfigType>) => {
 
 test('returns default config, when user config is not provided', async () => {
   const { defaultResultConfig } = setup();
-  const result = await utils.uniteConfigs(DEFAULT_CONFIG, null, gitmojis);
+  const result = await lib.uniteConfigs(DEFAULT_CONFIG, null, gitmojis);
   expect(result).toEqual(defaultResultConfig);
 })
 
 test('returns default config with author\'s types when user config doesn\'t have any', async () => {
   const { baseUserConfig, defaultResultConfig } = setup();
-  const result = await utils.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis);
+  const result = await lib.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis);
   const expectedConfig = {
     ...defaultResultConfig,
     ...baseUserConfig,
@@ -74,7 +74,7 @@ test('throws if user config has corrupted types', async () => {
       }
     ]
   })
-  await expect(utils.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis))
+  await expect(lib.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis))
     .rejects
     .toThrowError('emoji is a required field');
 })
@@ -97,7 +97,7 @@ test('returns user config with replaced user types', async () => {
     ],
     replaceTypes: true,
   });
-  const result = await utils.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis);
+  const result = await lib.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis);
   const expectedConfig = {
     ...DEFAULT_CONFIG,
     ...baseUserConfig,
@@ -123,7 +123,7 @@ test('returns user config with user types combined with default ones', async () 
   const { baseUserConfig, gitmojiTypes } = setup({
     types: userTypes,
   });
-  const result = await utils.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis);
+  const result = await lib.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis);
   const expectedConfig = {
     ...DEFAULT_CONFIG,
     ...baseUserConfig,
@@ -157,7 +157,7 @@ test('returns user config with user types combined with selected gitmojitypes', 
   const selectedGitmojis = gitmojiTypes.filter(
     ({ code }) => code === ':art:' || code === ':coffin:'
   )
-  const result = await utils.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis);
+  const result = await lib.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis);
   const expectedConfig = {
     ...DEFAULT_CONFIG,
     ...baseUserConfig,
@@ -223,7 +223,7 @@ with changed type names', async () => {
   // change only name
   // @ts-ignore
   selectedGitmojis[coffinGitmojiIndex].name = 'dead';
-  const result = await utils.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis);
+  const result = await lib.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis);
   const expectedConfig = {
     ...DEFAULT_CONFIG,
     ...baseUserConfig,
@@ -242,7 +242,7 @@ test('returns user config with conventional emoji pack', async () => {
     selectedTypesByCode: [':art:', ':coffin:'],
     usePack: 'conventional',
   });
-  const result = await utils.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis);
+  const result = await lib.uniteConfigs(DEFAULT_CONFIG, baseUserConfig, gitmojis);
   const resultEntries = result.types.map(({ code, name }) => [code, name])
   expect(result.types).toHaveLength(9);
   expect(resultEntries).toEqual(expect.arrayContaining(conventionalEntries));

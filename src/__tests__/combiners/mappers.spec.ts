@@ -1,4 +1,4 @@
-import utils from 'utils';
+import lib from 'lib';
 import {
   GitmojiObjectType,
 } from 'types'
@@ -11,7 +11,7 @@ import {
 import testFile from '../fixtures/testFile.json'
 
 test('returns default type names if user type names are not given', () => {
-  const result = utils.mapTypeNames(testFile.gitmojis as GitmojiObjectType[])
+  const result = lib.mapTypeNames(testFile.gitmojis as GitmojiObjectType[])
   expect(result).not.toBeNull();
   const newNames = result.map(({ name }) => name);
   const preferedNames = TYPE_NAMES.map(([_, name]) => name);
@@ -20,7 +20,7 @@ test('returns default type names if user type names are not given', () => {
 })
 
 test('throws if one of user type names is not a string', () => {
-  expect(() => utils.mapTypeNames(
+  expect(() => lib.mapTypeNames(
     testFile.gitmojis as GitmojiObjectType[],
     {
       userTypeNames: { ':art:': true } as any
@@ -29,13 +29,13 @@ test('throws if one of user type names is not a string', () => {
 })
 
 test('throws if one of user emoji codes is not valid', () => {
-  expect(() => utils.mapTypeNames(
+  expect(() => lib.mapTypeNames(
     testFile.gitmojis as GitmojiObjectType[],
     {
       userTypeNames: { 'art:': 'name' } as any
     }
   )).toThrowError(ERROR_MISSING_EMOJI_CODE('art:'))
-  expect(() => utils.mapTypeNames(
+  expect(() => lib.mapTypeNames(
     testFile.gitmojis as GitmojiObjectType[],
     {
       userTypeNames: { ':sth:': 'name' } as any
@@ -45,7 +45,7 @@ test('throws if one of user emoji codes is not valid', () => {
 
 test('returns a given set of selected emojis', () => {
   const selectedTypeNames = [':art:', ':bug:']
-  const result = utils.mapTypeNames(
+  const result = lib.mapTypeNames(
     testFile.gitmojis as GitmojiObjectType[],
     { selectedTypeNames }
   )
@@ -60,7 +60,7 @@ test('returns user redefined type names', () => {
     ':art:': 'voila',
     ':coffin:': 'dead',
   }
-  const result = utils.mapTypeNames(
+  const result = lib.mapTypeNames(
     testFile.gitmojis as GitmojiObjectType[],
     { userTypeNames }
   )
@@ -87,7 +87,7 @@ and author\'s type names for unmapped emoji codes', () => {
     ':coffin:': 'dead',
   }
   const selectedTypeNames = [':art:', ':bug:']
-  const result = utils.mapTypeNames(
+  const result = lib.mapTypeNames(
     testFile.gitmojis as GitmojiObjectType[],
     {
       userTypeNames,

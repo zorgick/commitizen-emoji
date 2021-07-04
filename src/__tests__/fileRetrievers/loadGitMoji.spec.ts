@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import util from 'util';
-import utils from 'utils';
+import lib from 'lib';
 
 import testFile from '../fixtures/testFile.json';
 
@@ -15,7 +15,7 @@ test('loads via network (mock) missing gitmojis file', async () => {
   }
   expect(fs.existsSync(pathToGimojis)).toEqual(false);
 
-  const result = await utils.loadGitmoji();
+  const result = await lib.loadGitmoji();
 
   expect(fs.existsSync(pathToGimojis)).toEqual(true);
   expect(result).toEqual(expect.objectContaining(testFile.gitmojis))
@@ -23,7 +23,7 @@ test('loads via network (mock) missing gitmojis file', async () => {
 
 test('loads file from local fs', async () => {
   expect(fs.existsSync(pathToGimojis)).toEqual(true);
-  const result = await utils.loadGitmoji();
+  const result = await lib.loadGitmoji();
 
   expect(result).toEqual(expect.objectContaining(testFile.gitmojis))
 });

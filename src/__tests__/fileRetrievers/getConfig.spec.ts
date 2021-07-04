@@ -4,7 +4,7 @@ import {
   TYPE_NAMES,
 } from 'consts';
 
-import * as utils from '../../utils/fileRetrievers/loadConfig';
+import * as lib from '../../lib/fileRetrievers/loadConfig';
 import { gitmojis } from '../fixtures/testFile.json';
 
 const setup = (adjustedConfig?: Partial<ConfigType>) => {
@@ -51,19 +51,19 @@ afterEach(() => {
 })
 
 test('calls loadGitmoji and loadConfigFromUserRoot', async () => {
-  const loadConfigFromUserRootSpy = jest.spyOn(utils, 'loadConfigFromUserRoot')
-  const loadConfigSpy = jest.spyOn(utils, 'loadConfig')
-  await utils.getConfig();
+  const loadConfigFromUserRootSpy = jest.spyOn(lib, 'loadConfigFromUserRoot')
+  const loadConfigSpy = jest.spyOn(lib, 'loadConfig')
+  await lib.getConfig();
   expect(loadConfigFromUserRootSpy).toHaveBeenCalled();
   expect(loadConfigSpy).toHaveBeenCalled();
 })
 
 test('returns default config, if a user config was not found', async () => {
   const { defaultResultConfig } = setup();
-  const loadConfigFromUserRootSpy = jest.spyOn(utils, 'loadConfigFromUserRoot')
+  const loadConfigFromUserRootSpy = jest.spyOn(lib, 'loadConfigFromUserRoot')
   loadConfigFromUserRootSpy.mockResolvedValue(null)
 
-  const result = await utils.getConfig();
+  const result = await lib.getConfig();
   expect(result).toEqual(defaultResultConfig);
 })
 
@@ -78,10 +78,10 @@ test('throws if user config has corrupted types', async () => {
       }
     ]
   });
-  const loadConfigFromUserRootSpy = jest.spyOn(utils, 'loadConfigFromUserRoot')
+  const loadConfigFromUserRootSpy = jest.spyOn(lib, 'loadConfigFromUserRoot')
   loadConfigFromUserRootSpy.mockResolvedValue(baseUserConfig)
 
-  await expect(utils.getConfig())
+  await expect(lib.getConfig())
     .rejects
     .toThrowError('emoji is a required field');
 })
@@ -121,10 +121,10 @@ selected gitmojitypes with changed type names', async () => {
     }
   });
 
-  const loadConfigFromUserRootSpy = jest.spyOn(utils, 'loadConfigFromUserRoot')
+  const loadConfigFromUserRootSpy = jest.spyOn(lib, 'loadConfigFromUserRoot')
   loadConfigFromUserRootSpy.mockResolvedValue(baseUserConfig)
 
-  const result = await utils.getConfig();
+  const result = await lib.getConfig();
 
   const selectedGitmojis = gitmojiTypes.filter(
     ({ code }) => code === ':art:' || code === ':coffin:' || code === ':fire:'

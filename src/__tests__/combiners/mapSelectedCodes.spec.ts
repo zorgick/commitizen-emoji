@@ -1,10 +1,10 @@
-import utils from 'utils';
+import lib from 'lib';
 import {
   TYPE_NAMES,
 } from 'consts'
 
 test('returns default emoji codes if user emoji codes are not given', () => {
-  const result = utils.mapSelectedCodes()
+  const result = lib.mapSelectedCodes()
   const preferredCodes = result.map(([code]) => code);
   const defaultCodes = TYPE_NAMES.map(([code]) => code);
   expect(preferredCodes).not.toEqual([...defaultCodes, ':lala:']);
@@ -13,7 +13,7 @@ test('returns default emoji codes if user emoji codes are not given', () => {
 
 test('returns default emoji codes if user emoji codes are not in a list', () => {
   // @ts-ignore
-  const result = utils.mapSelectedCodes({ ':art:': 'cool', ':test:': 'test' })
+  const result = lib.mapSelectedCodes({ ':art:': 'cool', ':test:': 'test' })
   const preferredCodes = result.map(([code]) => code);
   const defaultCodes = TYPE_NAMES.map(([code]) => code);
   expect(preferredCodes).not.toEqual([...defaultCodes, ':lala:']);
@@ -21,7 +21,7 @@ test('returns default emoji codes if user emoji codes are not in a list', () => 
 })
 
 test('returns selected emoji codes', () => {
-  const result = utils.mapSelectedCodes([':art:', ':coffin:', ':zap:'])
+  const result = lib.mapSelectedCodes([':art:', ':coffin:', ':zap:'])
   const preferredCodes = result.map(([code]) => code);
   const defaultCodes = TYPE_NAMES
     .map(([code]) => code)
@@ -35,7 +35,7 @@ test('returns selected emoji codes', () => {
 })
 
 test('returns selected emoji codes, ignores non-matching', () => {
-  const result = utils.mapSelectedCodes([':art', ':coffin:', ':zap:', 'bug:', 'bag'])
+  const result = lib.mapSelectedCodes([':art', ':coffin:', ':zap:', 'bug:', 'bag'])
   const preferredCodes = result.map(([code]) => code);
   const defaultCodes = TYPE_NAMES
     .map(([code]) => code)
@@ -48,7 +48,7 @@ test('returns selected emoji codes, ignores non-matching', () => {
 })
 
 test('returns selected emoji codes, ignores with a wrong format', () => {
-  const result = utils.mapSelectedCodes([1, ':coffin:', ':zap:', true, []])
+  const result = lib.mapSelectedCodes([1, ':coffin:', ':zap:', true, []])
   const preferredCodes = result.map(([code]) => code);
   const defaultCodes = TYPE_NAMES
     .map(([code]) => code)

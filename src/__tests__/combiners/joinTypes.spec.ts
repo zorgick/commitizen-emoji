@@ -1,4 +1,4 @@
-import utils from 'utils';
+import lib from 'lib';
 import {
   TYPE_NAMES,
   CONVENTIONAL_NAMES,
@@ -6,7 +6,7 @@ import {
 import { gitmojis } from '../fixtures/testFile.json'
 
 test('returns author\'s gitmojis names, if the user config is not provided', async () => {
-  const result = await utils.joinTypes(gitmojis);
+  const result = await lib.joinTypes(gitmojis);
   const resultEmojiNames = result.map(({ name }) => name);
   const authorEmojiNames = TYPE_NAMES.map(([_, name]) => name);
   expect(resultEmojiNames).toEqual(authorEmojiNames);
@@ -14,14 +14,14 @@ test('returns author\'s gitmojis names, if the user config is not provided', asy
 
 test('returns author\'s gitmojis names, if the user type list is of a wrong format', async () => {
   // @ts-ignore
-  const result = await utils.joinTypes(gitmojis, { types: {} });
+  const result = await lib.joinTypes(gitmojis, { types: {} });
   const resultEmojiNames = result.map(({ name }) => name);
   const authorEmojiNames = TYPE_NAMES.map(([_, name]) => name);
   expect(resultEmojiNames).toEqual(authorEmojiNames);
 })
 
 test('throws if any of user types is corrupted', async () => {
-  await expect(utils.joinTypes(gitmojis, {
+  await expect(lib.joinTypes(gitmojis, {
     types: [
       // @ts-ignore
       {
@@ -31,7 +31,7 @@ test('throws if any of user types is corrupted', async () => {
       }
     ]
   })).rejects.toThrowError('emoji is a required field');
-  await expect(utils.joinTypes(gitmojis, {
+  await expect(lib.joinTypes(gitmojis, {
     types: [
       // @ts-ignore
       {
@@ -60,7 +60,7 @@ test('returns only user types', async () => {
       name: "sad",
     },
   ];
-  const result = await utils.joinTypes(gitmojis, {
+  const result = await lib.joinTypes(gitmojis, {
     types: userTypes,
     replaceTypes: true
   });
@@ -82,7 +82,7 @@ test('joins all gitmojis and user types', async () => {
       name: "sad",
     },
   ];
-  const result = await utils.joinTypes(gitmojis, {
+  const result = await lib.joinTypes(gitmojis, {
     types: userTypes,
   });
   const resultCodes = result.map(({ code }) => code)
@@ -107,7 +107,7 @@ test('joins only selected gitmojis and user types', async () => {
       name: "sad",
     },
   ];
-  const result = await utils.joinTypes(gitmojis, {
+  const result = await lib.joinTypes(gitmojis, {
     types: userTypes,
     selectedTypesByCode: [':art:', ':coffin:']
   });
@@ -140,7 +140,7 @@ but changes names of some gitmojis types', async () => {
     ':art:': 'lavoila',
     ':coffin:': 'dead',
   };
-  const result = await utils.joinTypes(gitmojis, {
+  const result = await lib.joinTypes(gitmojis, {
     types: userTypes,
     typeNamesByCode,
   });
@@ -174,7 +174,7 @@ but changes names of only selected gitmojis types', async () => {
     ':coffin:': 'dead',
   };
   const selectedTypesByCode = [':art:', ':zap:', ':fire:'];
-  const result = await utils.joinTypes(gitmojis, {
+  const result = await lib.joinTypes(gitmojis, {
     types: userTypes,
     typeNamesByCode,
     selectedTypesByCode
@@ -212,7 +212,7 @@ but opts for a user type with the same code', async () => {
     ':art:': 'lavoila',
     ':coffin:': 'dead',
   };
-  const result = await utils.joinTypes(gitmojis, {
+  const result = await lib.joinTypes(gitmojis, {
     types: userTypes,
     typeNamesByCode,
   });
@@ -246,7 +246,7 @@ but opts for a user type with the same code', async () => {
     ':coffin:': 'dead',
   };
   const selectedTypesByCode = [':art:', ':zap:', ':fire:'];
-  const result = await utils.joinTypes(gitmojis, {
+  const result = await lib.joinTypes(gitmojis, {
     types: userTypes,
     typeNamesByCode,
     selectedTypesByCode
@@ -280,7 +280,7 @@ test('returns only user types and ignores usePack option', async () => {
       name: "sad",
     },
   ];
-  const result = await utils.joinTypes(gitmojis, {
+  const result = await lib.joinTypes(gitmojis, {
     types: userTypes,
     replaceTypes: true,
     usePack: 'conventional'
@@ -303,7 +303,7 @@ test('returns merged types and ignores usePack option', async () => {
       name: "sad",
     },
   ];
-  const result = await utils.joinTypes(gitmojis, {
+  const result = await lib.joinTypes(gitmojis, {
     types: userTypes,
     usePack: 'conventional'
   });
@@ -316,7 +316,7 @@ test('returns merged types and ignores usePack option', async () => {
 
 test('returns conventional pack of gitmojis, when usePack option tells so', async () => {
   const conventionalEntries = Object.entries(CONVENTIONAL_NAMES);
-  const result = await utils.joinTypes(gitmojis, {
+  const result = await lib.joinTypes(gitmojis, {
     usePack: 'conventional'
   });
   const resultEntries = result.map(({ code, name }) => [code, name])

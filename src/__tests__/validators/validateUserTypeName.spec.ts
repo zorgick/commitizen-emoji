@@ -1,4 +1,4 @@
-import utils from 'utils';
+import lib from 'lib';
 import {
   TYPE_NAMES,
   ERROR_TYPE_NAME_FORMAT,
@@ -9,39 +9,39 @@ import {
 const defaultTypeNames = new Map(TYPE_NAMES);
 
 test('throws on wrong types of a type name', () => {
-  expect(() => utils.validateUserTypeName([':any:', true], defaultTypeNames))
+  expect(() => lib.validateUserTypeName([':any:', true], defaultTypeNames))
     .toThrowError(ERROR_TYPE_NAME_FORMAT(true))
-  expect(() => utils.validateUserTypeName([':any:', undefined], defaultTypeNames))
+  expect(() => lib.validateUserTypeName([':any:', undefined], defaultTypeNames))
     .toThrowError(ERROR_TYPE_NAME_FORMAT(undefined))
-  expect(() => utils.validateUserTypeName([':any:', 2], defaultTypeNames))
+  expect(() => lib.validateUserTypeName([':any:', 2], defaultTypeNames))
     .toThrowError(ERROR_TYPE_NAME_FORMAT(2))
-  expect(() => utils.validateUserTypeName([':any:', {}], defaultTypeNames))
+  expect(() => lib.validateUserTypeName([':any:', {}], defaultTypeNames))
     .toThrowError(ERROR_TYPE_NAME_FORMAT({}))
-  expect(() => utils.validateUserTypeName([':any:', []], defaultTypeNames))
+  expect(() => lib.validateUserTypeName([':any:', []], defaultTypeNames))
     .toThrowError(ERROR_TYPE_NAME_FORMAT([]))
-  expect(() => utils.validateUserTypeName([':any:', () => { }], defaultTypeNames))
+  expect(() => lib.validateUserTypeName([':any:', () => { }], defaultTypeNames))
     .toThrowError(ERROR_TYPE_NAME_FORMAT(() => { }))
-  expect(() => utils.validateUserTypeName([':any:', null], defaultTypeNames))
+  expect(() => lib.validateUserTypeName([':any:', null], defaultTypeNames))
     .toThrowError(ERROR_TYPE_NAME_FORMAT(null))
-  expect(() => utils.validateUserTypeName([':any:', NaN], defaultTypeNames))
+  expect(() => lib.validateUserTypeName([':any:', NaN], defaultTypeNames))
     .toThrowError(ERROR_TYPE_NAME_FORMAT(NaN))
 })
 
 test('throws on a missing code name', () => {
-  expect(() => utils.validateUserTypeName([':any:', 'test'], defaultTypeNames))
+  expect(() => lib.validateUserTypeName([':any:', 'test'], defaultTypeNames))
     .toThrowError(ERROR_MISSING_EMOJI_CODE(':any:'))
 })
 
 test('throws on a incorrect code name format', () => {
-  expect(() => utils.validateUserTypeName(['art:', 'test'], defaultTypeNames))
+  expect(() => lib.validateUserTypeName(['art:', 'test'], defaultTypeNames))
     .toThrowError(ERROR_MISSING_EMOJI_CODE('art:'))
-  expect(() => utils.validateUserTypeName([':art', 'test'], defaultTypeNames))
+  expect(() => lib.validateUserTypeName([':art', 'test'], defaultTypeNames))
     .toThrowError(ERROR_MISSING_EMOJI_CODE(':art'))
-  expect(() => utils.validateUserTypeName(['art', 'test'], defaultTypeNames))
+  expect(() => lib.validateUserTypeName(['art', 'test'], defaultTypeNames))
     .toThrowError(ERROR_MISSING_EMOJI_CODE('art'))
 })
 
 test('passes validation', () => {
-  expect(utils.validateUserTypeName([':art:', 'test'], defaultTypeNames))
+  expect(lib.validateUserTypeName([':art:', 'test'], defaultTypeNames))
     .toEqual(undefined)
 })

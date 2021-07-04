@@ -1,4 +1,4 @@
-import utils from 'utils';
+import lib from 'lib';
 import { gitmojis } from '../fixtures/testFile.json'
 
 test('returns default gitmoji types appended with user emoji types', () => {
@@ -16,7 +16,7 @@ test('returns default gitmoji types appended with user emoji types', () => {
       name: "sad",
     },
   ];
-  const result = utils.mergeTypeLists(gitmojis, userTypes);
+  const result = lib.mergeTypeLists(gitmojis, userTypes);
   expect(result).toEqual([...gitmojis, ...userTypes]);
 })
 
@@ -36,7 +36,7 @@ test('returns default gitmoji types with inserted user emoji types', () => {
       name: "sad",
     },
   ];
-  const result = utils.mergeTypeLists(gitmojis, userTypes);
+  const result = lib.mergeTypeLists(gitmojis, userTypes);
   const artIndex = gitmojisTypes.findIndex(({ code }) => code === ':art:');
   const coffinIndex = gitmojisTypes.findIndex(({ code }) => code === ':coffin:');
   // @ts-ignore
@@ -62,7 +62,7 @@ test('returns default gitmoji types with inserted and added user emoji types', (
       name: "sad",
     },
   ];
-  const result = utils.mergeTypeLists(gitmojis, userTypes);
+  const result = lib.mergeTypeLists(gitmojis, userTypes);
   const artIndex = gitmojisTypes.findIndex(({ code }) => code === ':art:');
   // @ts-ignore
   gitmojisTypes[artIndex] = userTypes[0];
@@ -85,7 +85,7 @@ test('inserts the latest user type of the same code', () => {
       name: "sad",
     },
   ];
-  const result = utils.mergeTypeLists(gitmojisTypes, userTypes);
+  const result = lib.mergeTypeLists(gitmojisTypes, userTypes);
   const zapIndex = gitmojisTypes.findIndex(({ code }) => code === ':zap:');
   // @ts-ignore
   gitmojisTypes[zapIndex] = userTypes[1];
