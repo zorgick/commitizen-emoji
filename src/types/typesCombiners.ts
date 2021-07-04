@@ -1,5 +1,6 @@
 import {
   CommonObjectType,
+  ConfigType,
   CodeNamesType,
 } from './index';
 
@@ -21,3 +22,8 @@ export type JoinTypesType = (
   gitmojiTypes: GitmojiObjectType[],
   userConfig?: Partial<ConfigType>
 ) => Promise<GitmojiObjectType[]>;
+export type UniteConfigsType = (
+  defaultConfig: ConfigType,
+  userConfig: Partial<ConfigType> | null,
+  gitmojiTypes: GitmojiObjectType[]
+) => Promise<ConfigType>;
