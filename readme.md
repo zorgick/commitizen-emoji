@@ -5,6 +5,7 @@
 <a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly" /></a>
 <a href="https://github.com/zorgick/commitizen-emoji/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome" /></a>
 <a href="https://github.com/zorgick/commitizen-emoji/blob/master/license"><img src="https://img.shields.io/github/license/zorgick/commitizen-emoji.svg" alt="License - MIT" /></a>
+<a href="https://github.com/zorgick/commitizen-emoji/"><img src="https://img.shields.io/badge/Coverage-100%25-brightgreen.svg" alt="Coverage" /></a>
 </p>
 
 
