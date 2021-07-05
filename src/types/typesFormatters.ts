@@ -25,3 +25,11 @@ export type FormatTitleType = (
   userAnswers: FormatTitleAnwersType,
   config: ConfigType,
 ) => string;
+export type FormatCommitBodyType = (
+  commitBody: string,
+  terminalColumns: number,
+) => string;
+export type FormatIssuesType = (
+  issues: string,
+  config: ConfigType,
+) => string;
