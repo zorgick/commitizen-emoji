@@ -1,5 +1,10 @@
 import lib from 'lib';
 
+test('returns an empty string', () => {
+  const testString = '    ';
+  expect(lib.formatCommitBody(testString, 3)).toEqual('');
+})
+
 test('preserves new lines of commit body', () => {
   const testString = '012 34\n567 89';
   expect(lib.formatCommitBody(testString, 3)).toEqual('012 34\n567 89');
