@@ -30,11 +30,11 @@ export type FormatTitleType = (
   config: ConfigType,
 ) => string;
 export type FormatCommitBodyType = (
-  commitBody: string,
+  commitBody: string | undefined,
   terminalColumns: number,
 ) => string;
 export type FormatIssuesType = (
-  issues: string,
+  issues: string | undefined,
   config: ConfigType,
 ) => string;
 export type FinalFormatType = (
