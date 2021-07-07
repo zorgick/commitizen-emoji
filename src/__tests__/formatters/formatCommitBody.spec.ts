@@ -1,6 +1,10 @@
 import lib from 'lib';
 
-test('returns an empty string', () => {
+test('returns an empty string, if string argument is undefined', () => {
+  expect(lib.formatCommitBody(undefined, 3)).toEqual('');
+})
+
+test('returns an empty string, if string argument is empty', () => {
   const testString = '    ';
   expect(lib.formatCommitBody(testString, 3)).toEqual('');
 })

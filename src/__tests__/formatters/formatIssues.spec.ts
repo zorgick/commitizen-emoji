@@ -15,6 +15,14 @@ const setup = (adjustedConfig?: Partial<ConfigType>) => {
   };
 }
 
+test('returns an empty string if no string was provided', () => {
+  const url = 'https://test.com';
+  const { config } = setup({
+    issuesPrefix: url
+  })
+  expect(lib.formatIssues(undefined, config)).toEqual('');
+})
+
 test('returns an empty string if issues are empty', () => {
   const url = 'https://test.com';
   const { config } = setup({
@@ -63,6 +71,21 @@ test('returns issues numbers prepended with a prefix as a valid url (in query pa
       prefix + testIssues
         .split(' ')
         .map((issue) => url.split('?').join('/?') + issue)
+        .join(', ')
+    );
+})
+
+test('returns issues numbers prepended with a non-url string', () => {
+  const customString = 'test-';
+  const { config, prefix } = setup({
+    issuesPrefix: customString
+  })
+  const testIssues = '13123-asf123 123123 ass1jJiasd123';
+  expect(lib.formatIssues(testIssues, config))
+    .toEqual(
+      prefix + testIssues
+        .split(' ')
+        .map((issue) => customString + issue)
         .join(', ')
     );
 })

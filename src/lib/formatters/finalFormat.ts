@@ -13,15 +13,17 @@ import {
  * @return {String} Formated git commit message
  */
 export const finalFormat: FinalFormatType = (answers, config) => {
+  /* istanbul ignore next */
   const { columns = 80 } = process.stdout
 
   const head = truncate(answers.subject, columns)
-  const body = formatCommitBody(answers.body || '', columns)
+  const body = formatCommitBody(answers.body, columns)
   const breaking = formatCommitBody(
-    `${answers.breakingBody ? 'BREAKING CHANGE: ' + answers.breakingBody : ''}`,
+    /* istanbul ignore next */
+    answers.breakingBody ? 'BREAKING CHANGE: ' + answers.breakingBody : undefined,
     columns
   )
-  const footer = formatIssues(answers.issues || '', config)
+  const footer = formatIssues(answers.issues, config)
 
   return [head, body, breaking, footer]
     .filter(Boolean)
