@@ -13,7 +13,11 @@
       "lib": ["./src/lib"],
       "types": ["./src/types"],
       "consts": ["./src/constants"]
-    }
+    },
+    "plugins": [ 
+      { "transform": "typescript-transform-paths" },
+      { "transform": "typescript-transform-paths", "afterDeclarations": true }
+    ]
   },
   "exclude": [
     "node_modules",

@@ -20,7 +20,8 @@ const config: Config.InitialOptions = {
     '<rootDir>/src/__tests__/mocks/'
   ],
   collectCoverageFrom: [
-    '<rootDir>/src/lib/**/*.{js,ts}'
+    '<rootDir>/src/lib/**/*.{js,ts}',
+    "!<rootDir>src/index.ts"
   ]
 };
 
