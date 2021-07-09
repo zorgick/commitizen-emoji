@@ -55,6 +55,7 @@
   },
   "scripts": {
     "test": "jest",
+    "build": "ttsc -p tsconfig.build.json",
     "prepare": "husky install"
   }
 }
