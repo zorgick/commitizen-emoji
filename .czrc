@@ -11,8 +11,9 @@
           "fixtures",
           "interceptors"
         ],
-        "conventional": true,
+        "conventionalFormat": true,
         "symbol": true
       }
     }
 }
+
