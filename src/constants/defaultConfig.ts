@@ -12,7 +12,7 @@ export const DEFAULT_CONFIG: ConfigType = {
     subject: 'Provide a commit title:',
     body: 'Provide a commit description:',
     breakingBody: 'Specify key features of a BREAKING CHANGE:',
-    issues: 'Resolved or linked issues (#1 #2 ...):',
+    issues: 'Resolved or linked issues (1, 2, ...):',
   },
   subjectMaxLength: 75,
   issuesPrefix: '',
