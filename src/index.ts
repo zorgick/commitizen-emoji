@@ -88,7 +88,10 @@ export default {
 
     lib.getConfig()
       .then((config) => ({ config, questions: createQuestions(config) }))
-      .then(({ config, questions }) => ({ config, answers: cz.prompt(questions) }))
+      .then(({ config, questions }) => {
+        return cz.prompt(questions)
+          .then((answers: any) => ({ config, answers }))
+      })
       .then(({ config, answers }) => lib.finalFormat(answers, config))
       .then(commit)
   }
