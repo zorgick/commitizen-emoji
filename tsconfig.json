@@ -1,24 +1,14 @@
 {
+  "extends": "./tsconfig.build.json",
   "compileOnSave": false, 
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
+    "noEmit": true,
     "sourceMap": true,
-    "noEmitOnError": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
     "strict": true,
     "rootDir": ".",
-    "outDir": "./dist",
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "typeRoots": ["./node_modules/@types", "./libTypes"],
-    "paths": {
-      "lib": ["./src/lib"],
-      "types": ["./src/types"],
-      "consts": ["./src/constants"]
-    }
+    "typeRoots": ["./node_modules/@types", "./libTypes"]
   },
   "exclude": [
     "node_modules",

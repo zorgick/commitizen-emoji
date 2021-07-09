@@ -1,20 +1,9 @@
-import { Answers } from 'inquirer';
 import {
   ConfigType,
+  AnswersHashesType,
 } from './index';
 
 // DTOs
-export type AnswersHashesType = {
-  type: {
-    emoji: string;
-    name: string;
-  };
-  scope: string;
-  subject: string;
-  body: string;
-  breakingBody: string;
-  issues: string;
-};
 export type FormatTitleAnwersType = Pick<AnswersHashesType, 'type' | 'scope' | 'subject'>;
 export type FinalFormatAnwersType =
   Pick<AnswersHashesType, 'subject'>

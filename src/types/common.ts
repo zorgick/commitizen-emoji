@@ -1,3 +1,4 @@
+import { Answers } from 'inquirer';
 import {
   TYPE_NAMES
 } from 'consts';
@@ -5,6 +6,19 @@ import {
 export type StringObjectType = Record<string, string>
 export type CommonObjectType = Record<string, any>
 export type CodeNamesType = typeof TYPE_NAMES[number][0]
+
+// DTOs
+export type AnswersHashesType = {
+  type: {
+    emoji: string;
+    name: string;
+  };
+  scope: string;
+  subject: string;
+  body: string;
+  breakingBody: string;
+  issues: string;
+};
 
 export interface MapInstance<K, V> {
   clear(): void;

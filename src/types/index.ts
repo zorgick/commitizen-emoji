@@ -5,3 +5,4 @@ export * from './typesCombiners';
 export * from './typesValidators';
 export * from './typesFormatters';
 export * from './typesSelectors';
+export * from './typesPrompts';
