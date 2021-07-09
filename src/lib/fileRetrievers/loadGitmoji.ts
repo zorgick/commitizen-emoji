@@ -1,5 +1,4 @@
 import fs from 'fs';
-import util from 'util';
 import path from 'path';
 import fetch from 'node-fetch';
 
@@ -17,8 +16,6 @@ import {
   loadLocalFile,
 } from './index'
 
-const writeFile = util.promisify(fs.writeFile);
-
 /** 
  * This function loads up-to-date version of gitmoji file via network
  * OR uses local version if it exists
@@ -26,8 +23,13 @@ const writeFile = util.promisify(fs.writeFile);
  */
 export const loadGitmoji: LoadGitmojiType = async () => {
   const filePath = path.join(__dirname, '..', '..', 'data', 'gitmojis.json');
+  const dirPath = path.dirname(filePath);
   let gitmojiTypes: GitmojiObjectType[] = [];
 
+  // create directory if it doesn't exist yet
+  if (!fs.existsSync(dirPath)) {
+    await fs.promises.mkdir(dirPath);
+  }
   if (fs.existsSync(filePath)) {
     // Read contents from existing file
     gitmojiTypes = await loadLocalFile<GitmojiObjectType[]>(filePath);
@@ -37,10 +39,10 @@ export const loadGitmoji: LoadGitmojiType = async () => {
       const gitmojiJson: ResponseGitmojiType = await fetch('https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json')
         .then(res => res.json());
       gitmojiTypes = gitmojiJson.gitmojis;
-      await writeFile(filePath, JSON.stringify(gitmojiTypes, undefined, 2));
-    } catch (e) {
+      await fs.promises.writeFile(filePath, JSON.stringify(gitmojiTypes, undefined, 2));
+    } catch (error) {
       /* istanbul ignore next */
-      throw Error(ERROR_GITMOJI_FETCH);
+      throw Error(ERROR_GITMOJI_FETCH + '\n\n\n' + error);
     }
   }
   return gitmojiTypes;

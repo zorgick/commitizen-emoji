@@ -1,12 +1,9 @@
 import path from 'path';
-import util from 'util';
 import fs from 'fs';
 
 import {
   LoadLocalFileType,
 } from 'types'
-
-const readFile = util.promisify(fs.readFile);
 
 /** 
  * This function loads any local file.
@@ -18,7 +15,7 @@ export const loadLocalFile: LoadLocalFileType = async (filePath) => {
     return null;
   }
 
-  const fileContents = await readFile(filePath, 'utf8')
+  const fileContents = await fs.promises.readFile(filePath, 'utf8')
   if (path.extname(filePath) === '.json') {
     return JSON.parse(fileContents);
   }
