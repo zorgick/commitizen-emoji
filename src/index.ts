@@ -51,13 +51,13 @@ const createQuestions: CreateQuestionsType = (config) => {
       ): string => lib.formatTitle({ ...answers, subject }, config)
     },
     {
-      type: 'editor',
+      type: 'input',
       name: 'body',
       message: config.questions.body,
       when: !config.skipQuestions.includes('body')
     },
     {
-      type: 'editor',
+      type: 'input',
       name: 'breakingBody',
       message: config.questions.breakingBody,
       when: !config.skipQuestions.includes('breakingBody')
