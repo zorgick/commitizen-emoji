@@ -1,6 +1,6 @@
 {
   "name": "commitizen-emoji",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Fancier commits with emojis.",
   "author": {
     "name": "Zackary Kononov",
