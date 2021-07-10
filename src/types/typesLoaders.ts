@@ -13,7 +13,7 @@ export type ConfigType = {
    *   "types": [
    *      {
    *        "emoji": "😱",
-   *        "code": ":wtf:",
+   *        "code": ":scream:",
    *        "description": "I don't understand a bit in all this code.",
    *        "name": "wtf"
    *      }
@@ -30,7 +30,7 @@ export type ConfigType = {
    *   "types": [
    *      {
    *        "emoji": "😱",
-   *        "code": ":wtf:",
+   *        "code": ":scream:",
    *        "description": "I don't understand a bit in all this code.",
    *        "name": "wtf"
    *      }

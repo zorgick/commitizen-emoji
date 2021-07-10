@@ -20,7 +20,7 @@
 According to the [Telegraph],
 the average human attention span has recently dropped from 🙈 12 seconds to
 8 seconds, docking us below that of a goldfish. Developers are much less likely
-to read the whole [conventional] commit message of every file, when there are 
+to read thoroughly the whole commit message of every file, when there are 
 📄 pages of a codebase itself. Reading even a single commit message requires
 a maximum of a few seconds of focus per file. And we all know, that 🔥 wasting
 an engineer's time is an unacceptable luxury.
@@ -52,14 +52,12 @@ emoji packs to get around with a fixed and a relatively small amount of well
 recognized emojis, like a [conventional] pack;
 
 
-##### 📈 they're *growing in  numbers*, so you will always find a desired emoji
-for your needs.
+##### 📈 they're *growing in  numbers*
+
+You will always find a desired emoji for your needs.
 
 
 ##### they're *fun* 🎉 and *fancy* 💄!
-
-Thus, these shortened focus times make the use of emojis a way to not only
-consume information, but to easily understand it.
 
 
 ## Demo 
@@ -77,10 +75,10 @@ consume information, but to easily understand it.
 ```
 
 ```sh
-# Resulting commit header (with conventional set to false)
+# Resulting commit title (with conventional set to false)
 ✨ (nonconventional): no type specified only emoji and scope
 
-# Resulting commit header (with conventional set to true)
+# Resulting commit title (with conventional set to true)
 ✨ feature(conventional): type comes with emoji and scope
 ```
 
@@ -156,6 +154,10 @@ and an author's version of type names.
 
 But you always can declare your own set of types in the manner of gitmoji types.
 
+> 🚩 **Note**
+>
+> Make sure your codes match with markdown emoji codes
+
 ```json
 {
   "config": {
@@ -163,7 +165,7 @@ But you always can declare your own set of types in the manner of gitmoji types.
       "types": [
          {
            "emoji": "😱",
-           "code": ":wtf:",
+           "code": ":scream:",
            "description": "I don't understand a bit in all this code.",
            "name": "wtf"
          }
@@ -177,6 +179,8 @@ But you always can declare your own set of types in the manner of gitmoji types.
 #### replaceTypes
 
 Should custom user types replace default gitmoji types.
+
+
 Defaults to `false` - types will be merged.
 
 
@@ -191,7 +195,7 @@ User types will take precedence over default types, or renamed types.
   "types": [
       {
         "emoji": "😱",
-        "code": ":wtf:",
+        "code": ":scream:",
         "description": "I don't understand a bit in all this code.",
         "name": "wtf"
       }
@@ -204,6 +208,8 @@ User types will take precedence over default types, or renamed types.
 #### scopes
 
 List of custom user scopes.
+
+
 Defaults to an empty array.
 
 
@@ -224,6 +230,8 @@ suggest to select a scope instead of typing it.
 #### symbol
 
 Should emoji be depicted as a grapheme or as a code.
+
+
 Defaults to `false` - code.
 
 
@@ -246,6 +254,8 @@ Defaults to `false` - code.
 #### skipQuestions
 
 List of question that must be skipped by the prompt.
+
+
 Defaults to an empty array.
 
 ```json
@@ -262,6 +272,8 @@ Defaults to an empty array.
 #### questions
 
 User defined question for each prompt.
+
+
 Defaults to an object with original questions.
 
 ```json
@@ -285,6 +297,8 @@ Defaults to an object with original questions.
 #### subjectMaxLength
 
 Maximum length of the subject.
+
+
 Defaults to `75`.
 
 > 🚩 **Note**
@@ -307,14 +321,14 @@ Defaults to `75`.
 
 Inserts prefix to all listed issues, .e.g. 
 ```sh
-# Issues: 2, 3 become
+# Issues: 2, 3 becomes
 Issues: https://harbarfor.atlassian.net/browse/2, https://harbarfor.atlassian.net/browse/3.
 ```
 Defaults to an empty string.
 
 > 🚩 **Note**
 >
-> URL validation is done by [URL node module], so make sure your prefix apply 
+> URL validation is done by [URL node module], so make sure your prefix conform 
 > to validation rules of this module.
 >
 >
@@ -335,6 +349,8 @@ Defaults to an empty string.
 
 Should the title contain an emoji with its name, in order to 
 pass commit linters (e.g., commitlint), or to please your preferences.
+
+
 Defaults to `false` - name is not added.
 
 ```json
@@ -352,6 +368,8 @@ Defaults to `false` - name is not added.
 
 List of **gitmoji** types that user wants to work with.
 Types are picked by emoji codes.
+
+
 Defaults to an empty array - all **gitmoji** types are used.
 
 > 🚩 **Note**
@@ -404,10 +422,12 @@ You can examine [default code-name pairs].
 #### usePack
 
 Allows to use one of the most popular sets of types.
+
+
 Defaults to an empty string - standard gitmoji types are used.
 
 
-Each set comes with appropriate names and emojis, the latter is opinionated.
+Each set comes with appropriate names and emojis, that are opinionated.
 
 > 🚩 **Note**
 >
