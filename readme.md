@@ -38,8 +38,8 @@ Emojis are a sequence of one or more code points that are displayed as a graphem
 ##### 🧐 they're *eye-catching*
 
 Compare two pictures below.
-[picture 1]
-[picture 2]
+![picture 1]
+![picture 2]
 A dull formal text looks pale next to a shiny emoji star ✨. Wait till you see a 
 git log or blame a file...
 
