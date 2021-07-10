@@ -30,12 +30,12 @@ const createQuestions: CreateQuestionsType = (config) => {
       source: (_, query) => Promise.resolve(query ? fuzzy.search(query) : choices)
     },
     {
-      type: config.scopes ? 'list' : 'input',
+      type: config.scopes.length ? 'list' : 'input',
       name: 'scope',
       message: config.questions.scope,
       // addons are conflicting with inquirer types, so
       // @ts-ignore
-      choices: config.scopes && [{ name: '[none]', value: '' }].concat(config.scopes),
+      choices: config.scopes.length && [{ name: '[none]', value: '' }].concat(config.scopes),
       when: !config.skipQuestions.includes('scope')
     },
     {
