@@ -1,7 +1,7 @@
 {
   "name": "commitizen-emoji",
   "version": "1.0.0",
-  "description": "Procommitlint commitizen adapter for conventional commits with emojis.",
+  "description": "Fancier commits with emojis.",
   "author": {
     "name": "Zackary Kononov",
     "email": "zorgizorgik@gmail.com"
@@ -19,7 +19,9 @@
     "commitizen",
     "commitlint",
     "adapter",
-    "emoji"
+    "emoji",
+    "gitmoji",
+    "prompt"
   ],
   "dependencies": {
     "cli-truncate": "^1.0.0",
