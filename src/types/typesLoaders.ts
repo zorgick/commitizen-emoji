@@ -34,7 +34,7 @@ export type ConfigType = {
    *        "description": "I don't understand a bit in all this code.",
    *        "name": "wtf"
    *      }
-   *   ]
+   *   ],
    *   "replaceTypes": true
    * }
    * ```
@@ -109,13 +109,12 @@ export type ConfigType = {
    * @example
    * ```json
    * "commitizenEmoji": {
-   *   "issuesPrefix": 'https://harbarfor.atlassian.net/browse/'
+   *   "issuesPrefix": "https://harbarfor.atlassian.net/browse/"
    * }
    * ```
-   * Inserts prefix to all listed issues, .e.g. Issues: #2, #3 become
+   * Inserts prefix to all listed issues, .e.g. Issues: 2, 3 become
    * Issues: https://harbarfor.atlassian.net/browse/2, https://harbarfor.atlassian.net/browse/3.
    * Defaults to empty string.
-   * A terminating slash can be omitted.
    */
   issuesPrefix: string;
   /**
@@ -142,7 +141,7 @@ export type ConfigType = {
    * If replaceTypes option is set to true, this list is neglected.
    * If usePack option is provided and types option is not, this list is neglected.
    * All nonexistant code name will be ignored
-   * Default to empty array - all **gitmoji** types are used.
+   * Defaults to empty array - all **gitmoji** types are used.
    */
   selectedTypesByCode: string[];
   /**
@@ -152,7 +151,7 @@ export type ConfigType = {
    *   "typeNamesByCode": {
    *      ":fire:": "cowabunga",
    *      ":poop:": "it-is-treason-then"
-   *    },
+   *    }
    * }
    * ```
    * Map of code-name pairs.

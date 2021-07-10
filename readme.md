@@ -26,21 +26,37 @@ a maximum of a few seconds of focus per file. And we all know, that 🔥 wasting
 an engineer's time is an unacceptable luxury.
 
 
-Emojis satisfy this desire for fast and efficient scanning of commit history
+Emojis satisfy this desire for fast and efficient scanning of the commit history
 across files. There are several advantages that emojis bring:
-- they're small *key text anchors* (a sequence of one or more code points that are
-  displayed as a grapheme).
-- they're *eye-catching*! Look at the picture below.
-  Let's be honest! What drew your attention first? A dull formal text or a shiny
-  emoji star ✨?
-![picture 1]
-- they're *recognizable*! Like really! Sometimes it can take a certain amount of time
-  to confidently tell the difference between this emoji 📄 and this emoji 📝,
-  but you will definitely understand that this 🎨 means code restyle, and this
-  🐛 means a bug fix.
-- they're *growing in 📈 numbers*, so you will always find a desired emoji for your
-  needs.
-- they're *fun* 🎉 and *fancy* 💄!
+
+
+##### 📌 they're small *key text anchors* 
+
+Emojis are a sequence of one or more code points that are displayed as a grapheme.
+
+
+##### 🧐 they're *eye-catching*
+
+Compare two pictures below.
+[picture 1]
+[picture 2]
+A dull formal text looks pale next to a shiny emoji star ✨. Wait till you see a 
+git log or blame a file...
+
+
+##### 📸 they're *recognizable*
+
+Like really! You will definitely understand that this ⚡️ means performance
+improvement, and this 🐛 means a bug fix. You can even choose one of supported
+emoji packs to get around with a fixed and a relatively small amount of well
+recognized emojis, like a [conventional] pack;
+
+
+##### 📈 they're *growing in  numbers*, so you will always find a desired emoji
+for your needs.
+
+
+##### they're *fun* 🎉 and *fancy* 💄!
 
 Thus, these shortened focus times make the use of emojis a way to not only
 consume information, but to easily understand it.
@@ -48,24 +64,24 @@ consume information, but to easily understand it.
 
 ## Demo 
 ```sh
-? Select the type of change you are committing: (Use arrow keys or type to search)
-❯ codestyle    🎨  Improving structure / format of the code. 
-  perf         ⚡️  Improving performance. 
-  prune        🔥  Removing code or files. 
-  fix          🐛  Fixing a bug. 
-  quickfix     🚑  Critical hotfix. 
-  feature      ✨  Introducing new features. 
-  docs         📝  Writing docs. 
+? Select the type of change you're committing:  (Use arrow keys or type to search)
+❯ codestyle   🎨  Improve structure / format of the code.
+  perf        ⚡️  Improve performance.
+  prune       🔥  Remove code or files.
+  bugfix      🐛  Fix a bug.
+  hotfix      🚑️  Critical hotfix.
+  feature     ✨  Introduce new features.
+  docs        📝  Add or update documentation.
 
 # Other prompts and answers...
 ```
 
 ```sh
 # Resulting commit header (with conventional set to false)
-✨ (nonconventional) this works, but makes commitlint break
+✨ (nonconventional): no type specified only emoji and scope
 
 # Resulting commit header (with conventional set to true)
-✨ feature(conventional): this works, and commitlint allows it
+✨ feature(conventional): type comes with emoji and scope
 ```
 
 ## Installation
@@ -96,19 +112,22 @@ OR add this to your package.json
 ```sh
 yarn cz
 ```
+
 OR if [husky] hooks are set up
 
 ```sh
-# if commitlint is present in commit-msg hook
-git commit -m 'a'  # 'a' will be neglected after commitlint checks commit message prepared by commitizen
+# if commit-msg hook contains commitlint scripts
+# 'a' will be neglected after commitlint checks commit
+# message prepared by commitizen
+git commit -m 'a'
 
-# if commitlint is not enabled in commit-msg
+# if commit-msg hook is not enabled
 yarn cz
 ```
 
 ## Customization
 
-Configuring **commitizen-emoji** can be done in two ways:
+Configuring **commitizen-emoji** can be done in two equal ways:
 
 I. `package.json`
 ```json
@@ -131,48 +150,89 @@ II. `./.czrc`
 
 #### types
 
-By default **commitizen-emoji** comes preconfigured with the [Gitmoji] types.
+By default **commitizen-emoji** comes preconfigured with the [Gitmoji] types
+and an author's version of type names.
 
 
-But you always can declare your own set of types.
+But you always can declare your own set of types in the manner of gitmoji types.
 
-```sh
+```json
 {
   "config": {
     "commitizenEmoji": {
       "types": [
-        {
-          "emoji": "🌟",
-          "code": ":star2:",
-          "description": "A new feature",
-          "name": "feature"
-        }
+         {
+           "emoji": "😱",
+           "code": ":wtf:",
+           "description": "I don't understand a bit in all this code.",
+           "name": "wtf"
+         }
       ]
     }
   }
 }
 ```
 
+
+#### replaceTypes
+
+Should custom user types replace default gitmoji types.
+Defaults to `false` - types will be merged.
+
+
+User types will take precedence over default types, or renamed types.
+
+> 🚩 **Note**
+>
+> This option will have no effect if types array is not defined or empty
+
+```json
+"commitizenEmoji": {
+  "types": [
+      {
+        "emoji": "😱",
+        "code": ":wtf:",
+        "description": "I don't understand a bit in all this code.",
+        "name": "wtf"
+      }
+  ],
+  "replaceTypes": true
+}
+```
+
+
 #### scopes
 
-```sh
+List of custom user scopes.
+Defaults to an empty array.
+
+
+Affects the way the prompt behaves. If there are scopes, the prompt will 
+suggest to select a scope instead of typing it.
+
+```json
 {
   "config": {
     "commitizenEmoji": {
-      "scopes": ["home", "accounts", "ci"]
+      "scopes": ["linters", "accounts", "tdd", "ci", "fixtures"]
     }
   }
 }
 ```
 
+
 #### symbol
 
-Use grapheme emoji (true) instead of its text code (false); 
+Should emoji be depicted as a grapheme or as a code.
+Defaults to `false` - code.
 
 
-Defaults to false.
+> 🚩 **Note**
+>
+> Some terminals (e.g., Windows terminal) cannot substitute a code
+> with a grapheme, so it helps to show an emoji correctly in your terminal.
 
-```sh
+```json
 {
   "config": {
     "commitizenEmoji": {
@@ -182,54 +242,57 @@ Defaults to false.
 }
 ```
 
+
 #### skipQuestions
 
-An array of questions you want to skip:
+List of question that must be skipped by the prompt.
+Defaults to an empty array.
 
-```sh
+```json
 {
   "config": {
     "commitizenEmoji": {
-      "skipQuestions": ["scope", "breakingBody"] # allowed values:
-      # "body" - removes long description,
-      # "scope" - removes scope, 
-      # "breakingBody" - removes BREAKING CHANGE (a.k.a. supplementary long description) description,
-      # "issues" - removes resolved or linked issues
+      "skipQuestions": ["scope", "body", "breakingBody", "issues"]
     }
   }
 }
 ```
 
+
 #### questions
 
-Questions overrides:
+User defined question for each prompt.
+Defaults to an object with original questions.
 
-```sh
+```json
 {
   "config": {
     "commitizenEmoji": {
       "questions": {
-        "body": "This will be displayed instead of original text" # allowed keys:
-        # "type" - type prompt message, 
-        # "scope" - scope prompt message, 
-        # "subject" - subject prompt message, 
-        # "breakingBody" - BREAKING CHANGE prompt message,
-        # "issues" - issues prompt message
+        "type": "This will be displayed instead of original type question",
+        "scope": "This will be displayed instead of original scope question",
+        "subject": "This will be displayed instead of original subject question",
+        "body": "This will be displayed instead of original body question",
+        "breakingBody": "This will be displayed instead of original breakingBody question",
+        "issues": "This will be displayed instead of original issues question"
       }
     }
   }
 }
 ```
 
+
 #### subjectMaxLength
 
-The maximum length of your subject
+Maximum length of the subject.
+Defaults to `75`.
 
 > 🚩 **Note**
 >
-> Make sure [commitlint] (if present) is configured to accept this length change
+> Make sure [commitlint] (if enabled) is configured to accept this length
+> of a commit title
 
-```sh
+```json
 {
   "config": {
     "commitizenEmoji": {
@@ -239,77 +302,132 @@ The maximum length of your subject
 }
 ```
 
-#### conventional
 
-Place emoji before type to conform to conventional scheme of a commit header.
+#### issuesPrefix
 
-
-Defaults to false.
-
+Inserts prefix to all listed issues, .e.g. 
 ```sh
+# Issues: 2, 3 become
+Issues: https://harbarfor.atlassian.net/browse/2, https://harbarfor.atlassian.net/browse/3.
+```
+Defaults to an empty string.
+
+> 🚩 **Note**
+>
+> URL validation is done by [URL node module], so make sure your prefix apply 
+> to validation rules of this module.
+>
+>
+> Any string can be used as a prefix
+
+```json
 {
   "config": {
     "commitizenEmoji": {
-      "conventional": true
+      "issuesPrefix": "https://harbarfor.atlassian.net/browse/"
     }
   }
 }
 ```
+
+
+#### conventionalFormat
+
+Should the title contain an emoji with its name, in order to 
+pass commit linters (e.g., commitlint), or to please your preferences.
+Defaults to `false` - name is not added.
+
+```json
+{
+  "config": {
+    "commitizenEmoji": {
+      "conventionalFormat": true
+    }
+  }
+}
+```
+
+
+#### selectedTypesByCode
+
+List of **gitmoji** types that user wants to work with.
+Types are picked by emoji codes.
+Defaults to an empty array - all **gitmoji** types are used.
+
+> 🚩 **Note**
+>
+> If replaceTypes option is set to true, this list is neglected.
+>
+> If usePack option is provided and types option is not, this list is neglected.
+>
+> All nonexistant code name will be ignored
+
+```json
+{
+  "config": {
+    "commitizenEmoji": {
+      "selectedTypesByCode": [":art:", ":memo:", ":sparkles:", ":bug:"]
+    }
+  }
+}
+```
+
+
+#### typeNamesByCode
+
+Map of code-name pairs.
+
+Allows to redefine emoji names by selecting them by a gitmoji code
+and giving them new names.
+
+
+You can examine [default code-name pairs].
+
+> 🚩 **Note**
+>
+> If types are provided and replaceTypes is set to true, this map is neglected.
+
+```json
+{
+  "config": {
+    "commitizenEmoji": {
+      "typeNamesByCode": {
+         ":fire:": "cowabunga",
+         ":poop:": "it-is-treason-then"
+       }
+    }
+  }
+}
+```
+
+
+#### usePack
+
+Allows to use one of the most popular sets of types.
+Defaults to an empty string - standard gitmoji types are used.
+
+
+Each set comes with appropriate names and emojis, the latter is opinionated.
+
+> 🚩 **Note**
+>
+> If types are provided, this option is neglected.
+
+```json
+{
+  "config": {
+    "commitizenEmoji": {
+      "usePack": "conventional"
+    }
+  }
+}
+```
+
 
 ## Examples
 
 [.czrc](./.czrc)
 
-
-[commitlint.config.js](./commitlint.config.js)
-
-## Commitlint
-
-[Commitlint] needs external package [commitlint-config-gitmoji] and types from 
-**commitizen-emoji** to make everything to work
-
-```sh
-yarn add -D commitlint-config-gitmoji
-
-# create commitlint config file in the root directory
-touch commitlint.config.js
-```
-
-Tune `commitlint.config.js` according to [commitlint] rules:
-
-```js
-const { typeNames } = require('./lib');
-
-module.exports = {
-  extends: ['gitmoji'],
-  rules: {
-    'type-enum': [
-      2,
-      'always',
-      // declare emoji type names by copying them from commitizen-emoji
-      [
-        ...typeNames,
-        'my custom type'
-      ]
-    ],
-  },
-}
-```
-
-> 🚩 **Note**
->
-> Update [commitizen] config (`./.czrc` or in `package.json`) to make commit
-> header conform to conventional format.
-
-```sh
-{
-  "config": {
-    "commitizenEmoji": {
-      "conventional": true
-    }
-  }
-}
-```
 
 ## Cudos
 
@@ -317,9 +435,12 @@ Check out the origins of emoji commits - [gitmoji](https://gitmoji.dev/) fancy w
 
 [gitmoji]: https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json
 [commitizen]: https://github.com/commitizen/cz-cli
-[picture 1]: https://github.com/zorgick/commitizen-emoji/blob/master/assets/repo_preview.jpg?raw=true
+[picture 1]: https://github.com/zorgick/commitizen-emoji/blob/master/assets/without_emoji.jpg?raw=true
+[picture 2]: https://github.com/zorgick/commitizen-emoji/blob/master/assets/with_emoji.jpg?raw=true
 [husky]: https://github.com/typicode/husky
 [commitlint-config-gitmoji]: https://github.com/arvinxx/gitmoji-commit-workflow
 [commitlint]: https://commitlint.js.org/#/reference-rules
 [conventional]: https://www.conventionalcommits.org/en/v1.0.0/
 [Telegraph]: https://www.telegraph.co.uk/science/2016/03/12/humans-have-shorter-attention-span-than-goldfish-thanks-to-smart/
+[URL node module]: https://nodejs.org/api/url.html
+[default code-name pairs]: https://github.com/zorgick/commitizen-emoji/blob/master/src/constants/types.ts
